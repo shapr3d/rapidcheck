@@ -228,12 +228,17 @@ Configuration loadConfiguration() {
             << std::endl;
   return config;
 }
+static Configuration g_config = loadConfiguration();
 
 } // namespace
 
+void setGlobalSeed(uint64_t seed) {
+  std::cerr << "Using new global seed: " << seed << std::endl;
+  g_config.testParams.seed = seed;
+}
+
 const Configuration &configuration() {
-  static const Configuration config = loadConfiguration();
-  return config;
+  return g_config;
 }
 
 } // namespace detail
