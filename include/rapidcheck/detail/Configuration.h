@@ -53,6 +53,9 @@ std::string configToString(const Configuration &config);
 /// keys that differ from the default configuration.
 std::string configToMinimalString(const Configuration &config);
 
+/// Set the seed for the global configuration
+void setGlobalSeed(uint64_t seed);
+
 /// Returns the global configuration.
 const Configuration &configuration();
 

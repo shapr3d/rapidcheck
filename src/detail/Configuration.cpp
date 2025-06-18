@@ -229,11 +229,20 @@ Configuration loadConfiguration() {
   return config;
 }
 
+Configuration &getSingleConfiguration() {
+  static Configuration config = loadConfiguration();
+  return config;
+}
+
 } // namespace
 
+void setGlobalSeed(uint64_t seed) {
+  std::cerr << "Using new global seed: " << seed << std::endl;
+  getSingleConfiguration().testParams.seed = seed;
+}
+
 const Configuration &configuration() {
-  static const Configuration config = loadConfiguration();
-  return config;
+  return getSingleConfiguration();
 }
 
 } // namespace detail
